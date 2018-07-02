@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -100,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 CHANNEL_LAYERS = {
     "default":{
-        "BACKEND":"asgi_redis.RedisChnnelLayer",
+        "BACKEND":"asgi_redis.RedisChannelLayer",
         "CONFIG": {
             "hosts":[(redis_host, 6379)],
         },
