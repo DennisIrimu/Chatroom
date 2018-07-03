@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.six import python_2_unicode_compatible
-
+from channels import Group
 
 @python_2_unicode_compatible
 class Room(models.Model):
@@ -16,3 +16,10 @@ class Room(models.Model):
 
     def str(self):
         return self.title
+
+    def websocket_group(self):
+        """
+        Returns the Channels Group that sockets should
+        subscribe to for receiving messages as they are Generatedself.
+        """
+        return Group("room-%s" % self.id)
