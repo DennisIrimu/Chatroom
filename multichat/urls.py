@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from chat.views import index
+from django.contrib.auth.views import login,logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', index, name='homepage')
+    url(r'^accounts/login/$', login, name='login'),
+    url(r'^accounts/logout/$',logout, name='logout')
 ]
