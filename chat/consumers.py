@@ -22,3 +22,11 @@ def ws.disconnect(message):
             room.websocket_group.discard(message.reply_channel)
         except Room.DoesNotExist:
             pass
+def ws_receive(message):
+    # All WebSocket frames have either a text or binary payload; we decode the
+    # text part here assuming it's JSON.
+    # You could easily build up a basic framework that did this encoding/decoding
+    # for you as well as handling common errors.
+    payload = json.loads(message['text'])
+    payload['reply_channel'] = message.content['reply_channel']
+    Channel("chat.receive").send(payload)
