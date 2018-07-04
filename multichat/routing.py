@@ -1,4 +1,4 @@
-from channels import route
+from channels import include
 
 # Display messages in the console
 def message_handler(message):
@@ -6,5 +6,6 @@ def message_handler(message):
 
 # Register message handler
 channel_routing = [
-    route("websocket.receive",message_handler)
+    include("chat.routing.websocket_routing",path=r"^/chat/stream"),
+    include("chat.routing.custom_routing"),
 ]
